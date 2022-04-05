@@ -1,6 +1,6 @@
 [package]
 name = "pace"
-version = "0.0.0"
+version = "0.1.0"
 edition = "2021"
 authors = ["Sebastian Köln <s3bk@protonmail.com>"]
 description = "Progress Reporting"
@@ -8,3 +8,10 @@ repository = "https://github.com/s3bk/pace"
 homepage = "https://github.com/s3bk/pace"
 license = "MIT"
 keywords = ["progress", "report"]
+
+[features]
+print = ["crossbeam-channel"]
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+crossbeam-channel = { version = "0.5", optional = true }
