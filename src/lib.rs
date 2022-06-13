@@ -87,6 +87,9 @@ pub trait Update: Sync + Send {
     fn update(&self, id: StageId, update: ProgressReport);
 }
 
+impl Update for () {
+    fn update(&self, id: StageId, update: ProgressReport) {}
+}
 
 #[derive(Clone)]
 pub struct Reporter<'a> {
