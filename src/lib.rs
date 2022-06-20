@@ -59,6 +59,7 @@ impl ProgressTracker {
                     item.count += 1;
                 }
             }
+            ProgressReport::Message { .. } => {}
         }
     }
     pub fn print(&self) {
@@ -118,6 +119,9 @@ impl<'a> Reporter<'a> {
     pub fn increment(&self) {
         self.shared.report(self.id, ProgressReport::Progress)
     }
+    pub fn message(&self, text: String) {
+        self.shared.report(self.id, ProgressReport::Message { text})
+    }
 }
 impl<'a> Drop for Reporter<'a> {
     fn drop(&mut self) {
@@ -134,4 +138,7 @@ pub enum ProgressReport {
     Progress,
     #[serde(rename = "end")]
     EndStage,
+
+    #[serde(rename = "message")]
+    Message { text: String },
 }
